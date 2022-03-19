@@ -1,6 +1,7 @@
 # Philo's Phone Challenges
 
-Until April 15th, 2022, these can be accessed by calling +1 (585) 358-0101
+Until April 15th, 2022, these can be accessed by calling +1 (585) 358-0101 from a regular phone or s@140.238.152.111 from a SIP phone.
+SIP phone support is provided to allow callers from outside the US cheaply.
 
 ## AUTOVON
 ***TODO: probably use a different name for this challenge to not give away the whole secret***
@@ -24,7 +25,7 @@ I've configured my telephone system to listen for the `A` tones on the line conn
 Go to [https://phreaknet.org/bluebox/] and hold your phone's microphone near the computer's speakers while also recording the phone call, whether by holding a microphone up to the phone or using a software feature on your cellphone.  
 Dial the phone call, press 1 (on your phone or on the DTMF Tone Generator on the website), listen for the dialtone, and click `A`.  
 If everything's working correctly, you'll hear a series of beeps that repeats three times.  ***TODO: link to the recording***
-Run the recording of the beeps through a TDD decoder to get the flag ***TODO: find more than just minicom***
+Run the recording of the beeps through a TDD decoder, such as (minimodem)[http://www.whence.com/minimodem/] or (TTY Angel)[http://www.ciscounitytools.com/Applications/General/TTYAngel/TTYAngel.html] to get the flag.
 
 ### Flag
 `FLA$HG0RDONOVERRID3`
@@ -42,9 +43,12 @@ Playing those tones back into the handset would trick the telephone switch into 
 
 ### Solving/Testing
 Go to [https://phreaknet.org/bluebox/] and hold your phone's microphone near the computer's speakers while also recording the phone call, whether by holding a microphone up to the phone or using a software feature on your cellphone.  
-Dial the phone call, press 2 to get to the challenge, and press the 1-slot 25¢ button.
+Dial the phone call, press 2 to get to the challenge, and press the 1-slot 25¢ button and then any button on the keypad.
 If everything's working correctly, you'll hear some backwards speech.  ***TODO: link***
 Take your recording of the speech and use Audacity or some other audio editing tool to play it backwards to get the flag.
+
+### Flag
+`R3VERSED_CALL`
 
 
 ## "Long Distance" **WIP**
