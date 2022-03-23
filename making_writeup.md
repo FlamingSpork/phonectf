@@ -16,9 +16,22 @@
 It makes a dialtone and waits for digits and coin tones and served as a good starting point.  
 In my limited time, I couldn't figure out how to make 
 
+## Blue Box
+this isn't really an accurate emulation, but I just sorta made it wait for at least 500ms of 2600Hz with a dialtone playing
+since it's just a single tone, it's much easier to detect than a DTMF tone pair.
+**TODO: dialplan**
+
+I used Audacity to make an audio file with DTMF tones to the flag.
+
 ## AUTOVON
 I removed a significant portion of `payphone.agi` and made it detect the AUTOVON Flash Override (`A`) tones, play a crossbar connect sound, and then play the flag.  
 The flag was made using `echo "FLA\$HG0RDONOVERRID3" | minimodem --tx tdd -f TDD.flac`, which I made play three times specifically to get it to work with (TTY/TDD drawers)[https://twitter.com/Flaming_Spork/status/1504902391094784006].
 
+## Redboxing
+very little modification to make it work
+the main thing was to make it not faithfully emulate and expect digits to dial
+
 ## Issues
 * DTMF tolerances are so borked that I had to use different digits
+* blocking SIP scanners
+* logs overfilling the disk
