@@ -8,15 +8,16 @@ These challenges are not compatible with DownDetector, unless *you* want to writ
 
 ## "Long Distance Trunk"
 ### Clue
-You're not going to pay for that call, are you?
+You're not going to pay for that call, are you?  
 +1 (585) 358-0101 or s@140.238.152.111, extension #3
 
 ### How/why it works
-As I discussed in my [research presentation](https://www.youtube.com/watch?v=qdciYBQngdk), 
-This is a simplified version of how a blue box would actually be used.  
+As I discussed in my most recent [research presentation](https://www.youtube.com/watch?v=qdciYBQngdk), a 2600 Hz tone is used to indicate that a long distance trunk line was empty.
+A blue box generates this tone and provides a keypad for dialing the MF (not to be confused with DTMF) tones (as well as ST and KP tones) needed to create a new call.
+This challenge simply detects the 2600 Hz tone and plays a flag. 
 
-[DTMF](https://en.wikipedia.org/wiki/Dual-tone_multi-frequency) tones are the tones that all touch-tone telephones use to indicate digits, which work by playing two tones at the same time.  
-It replaces the disconnecting and reconnecting of the line that rotary phone dials do.
+[DTMF](https://en.wikipedia.org/wiki/Dual-tone_multi-frequency) tones are the tones that all touch-tone telephones use to indicate digits, which work by playing two tones at the same time.
+It replaces the disconnecting and reconnecting of the line that rotary phone dials do with in-band signalling for faster and more efficient dialing.
 
 ### Solving/Testing
 Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call, whether by holding a microphone up to the phone or using a software feature on your cellphone.  
