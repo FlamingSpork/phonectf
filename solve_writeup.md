@@ -6,7 +6,12 @@ SIP phone support is provided to allow callers from outside the US cheaply and t
 **Testing Note:** When checking whether challenges are up or down, just listen to the audio and make sure it sounds like the correct recording.  
 These challenges are not compatible with DownDetector, unless *you* want to write a script to place a SIP call and check the audio.
 
-## "Long Distance Trunk"
+**CTF Operations Notes:** 
+* Only the challenge titles, difficulties, and clues are to be posted in CTFd. 
+* The flags are *not* wrapped in `RITSEC{}` due to limitations in the character sets used. Whether or not the correct flag is wrapped should probably be indicated in the clue, unless it isn't for other challenges.
+* 
+
+## "Long Distance Trunk" [Easy]
 ### Clue
 You're not going to pay for that call, are you?  
 +1 (585) 358-0101 or s@140.238.152.111, extension #3
@@ -14,7 +19,7 @@ You're not going to pay for that call, are you?
 ### How/why it works
 As I discussed in my most recent [research presentation](https://www.youtube.com/watch?v=qdciYBQngdk), a 2600 Hz tone is used to indicate that a long distance trunk line was empty.
 A blue box generates this tone and provides a keypad for dialing the MF (not to be confused with DTMF) tones (as well as ST and KP tones) needed to create a new call.
-This challenge simply detects the 2600 Hz tone and plays a flag. 
+This challenge simply detects the 2600 Hz tone and plays a flag, rather than requiring a number. 
 
 [DTMF](https://en.wikipedia.org/wiki/Dual-tone_multi-frequency) tones are the tones that all touch-tone telephones use to indicate digits, which work by playing two tones at the same time.
 It replaces the disconnecting and reconnecting of the line that rotary phone dials do with in-band signalling for faster and more efficient dialing.
@@ -28,8 +33,7 @@ You should hear a series of nine beeps that sounds like [this](https://gitlab.ri
 ### Flag
 `*9035768*`
 
-## AUTOVON
-***TODO: probably use a different name for this challenge to not give away the whole secret***
+## Military Modulation [Hard]
 ### Clue
 It's the middle of the Cold War and General Gordon needs to call the President to prevent nuclear war.  
 See if you can help him out at +1 (585) 358-0101 or s@140.238.152.111, extension # 1
@@ -58,9 +62,9 @@ Run the recording of the beeps through a TDD decoder, such as [minimodem](http:/
 
 
 
-## "25¢, Please"
+## "25¢, Please" [Medium]
 ### Clue
-Oh no! Your telephone line has turned into a payphone!
+Oh no! Your telephone line has turned into a payphone! Insert your coins and dial a number.  
 +1 (585) 358-0101 or s@140.238.152.111, extension #2
 
 ### How/why it works
