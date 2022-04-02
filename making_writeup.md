@@ -4,21 +4,11 @@
 
 ***TODO: rename this to `README.md` and merge in `solve_writeup.md`***
 
-## Initial Setup
-* Patching Asterisk
-* Building + installing
-* Converting audio
-`ffmpeg -i input.file -ar 8000 -ac 1 -acodec pcm_s16le -f s16le output.sln`
-* repeatedly making sure that dtmf is inband
-* inbound dialing with voip.ms
-* girlbossing and gatekeeping SIP through NAT
-* anonymous sip
-* testing with linphone ![](linphone.png)
-
-## Modified DTMF
-to avoid writing my own two-tone detector code, I used `hharte`'s modified DTMF, which added `$`
-in his code, E through L are dashes, but I ran into an issue in which `$` was getting detected as one of the dashes, so I put a unique letter on each
-for some reason, digits beyond the first row are read incorrectly, but consistently incorrectly, so I just put the incorrect ones in my dialplan
+## Patching Asterisk for Modified DTMF
+To avoid writing my own two-tone detector code for payphone/red box tones, I used (`hharte`'s patch)[https://github.com/hharte/1dcoinctrl/blob/master/asterisk/main/0001-Modify-DTMF-matrix-to-decode-1700-2200Hz-coin-tones.patch] to Asterisk's DTMF detector, which added the extra digit `$`.
+This patch could not be applied directly due to changes in more recent versions of Asterisk, so I ported it forward to make (my version of `dsp.c`)[src/main/dsp.c].
+In his code, E through L are dashes, but I ran into an issue in which `$` was getting detected as one of the dashes, so I put a unique letter on each, rather than trying to debug tolerances in C written in 2005.
+For some reason, digits beyond the first row are read incorrectly, but consistently incorrectly, so I just put the incorrect ones in my dialplan and in my AGI scripts.
 
 |           | **1209 Hz** | **1336 Hz** | **1477 Hz** | **1633 Hz** | **_2200 Hz_** |
 |-----------|-------------|-------------|-------------|-------------|---------------|
@@ -27,6 +17,34 @@ for some reason, digits beyond the first row are read incorrectly, but consisten
 | 852 Hz    | 7           | 8           | 9           | C           | *G*           |
 | 941 Hz    | *           | 0           | #           | D           | *H*           |
 | *1700 Hz* | *I*         | *J*         | *K*         | *L*         | *$*           |
+
+## Building and Installing Asterisk
+After patching it, it ended up being pretty easy to actually build and install, although I did need to create the user for it and `chown` all the files myself.
+**TODO: find where I got instructions for that (or just drop my notes)**
+
+## voip.ms
+For accepting calls from the Public Switched Telephone Network, I used (voip.ms)[https://voip.ms] to get a Direct Inbound Dialing line, which I paid about US $5 for a month with unlimited inbound calling.
+I chose voip.ms because they have (good documentation)[https://wiki.voip.ms/article/Asterisk_PJSIP], and, more importantly, they're cheap.
+To be clear, I was not sponsored by them in any way for this project.
+
+After buying the number, I made sure that they were sending DTMF tones in-band, rather than as a SIP message, both in their web interface and in (my PJSIP config)[config/pjsip.conf].
+
+## PJSIP Config
+In order to accept inbound SIP calls with the particular network setup I used, I had to (gaslight and girlboss my SIP packets through NAT)[https://twitter.com/kimlikesflowers/status/1502478844204355587].
+Fortunately, Asterisk/PJSIP supports this natively and it was easy to put in (my config)[config/pjsip.conf].
+
+I also added an anonymous endpoint that could be used as a SIP address.
+
+For both of these, I had to make sure that DTMF was in-band to actually get it through to my challenges.
+
+## Converting Audio and Building Dialplan
+I created a dialplan context that accepts calls from voip.ms and from anonymous SIP and then forces all calls into the `phreaking-chall` context, which had extensions for each of the challenges and easter eggs.
+
+`ffmpeg -i input.file -ar 8000 -ac 1 -acodec pcm_s16le -f s16le output.sln`
+
+## Linphone
+Once I had a dialplan built and had it set up to accept SIP calls, I started testing and debugging it using Linphone.
+![](linphone.png)
 
 ## Modifying `payphone.agi`
 (`payphone.agi`)[https://github.com/hharte/1dcoinctrl/blob/master/asterisk/agi-bin/payphone.agi] is a script to emulate the central office setup required for a payphone.  
@@ -42,13 +60,15 @@ since it's just a single tone, it's much easier to detect than a DTMF tone pair.
 
 I used Audacity to make an audio file with DTMF tones to the flag.
 
-## AUTOVON
-I removed a significant portion of `payphone.agi` and made it detect the AUTOVON Flash Override (`A`) tones as a coin, play a crossbar connect sound, and then play the flag.  
-The flag was made using `echo "FLA\$HG0RDONOVERRID3" | minimodem --tx tdd -f TDD.flac`, which I made play three times specifically to get it to work with (TTY/TDD drawers)[https://twitter.com/Flaming_Spork/status/1504902391094784006] and to hopefully minimize decoding problems.
+## (AUTOVON)[agi-bin/autovon.agi]
+I removed a significant portion of `payphone.agi` and made it detect the AUTOVON Flash Override (`A`) tones as a coin, since this seemed easier than trying to get DTMF detection in a dialplan.
+If 5¢ (one press of the `A` button) was received, it played the flag, but it gave a busy signal if any other buttons were heard or if it timed out waiting for a digit.
+
+I made the flag using `echo "FLA\$HG0RDONOVERRID3" | minimodem --tx tdd -f TDD.flac`, which I made play three times specifically to get it to work with (TTY/TDD drawers)[https://twitter.com/Flaming_Spork/status/1504902391094784006] and to hopefully minimize decoding problems.
 
 ***TODO: download final patched AGI scripts***
 
-## Redboxing
+## (Redbox)[agi-bin/redbox.agi]
 very little modification to make it work
 the main thing was to make it not faithfully emulate and expect digits to dial
 in the end, didn't manage to truly defeat that requirement, so just made the clue include it
@@ -74,3 +94,4 @@ We had __ successful solves, and (`core show channels`) phone calls during the C
 * Connections Museum
 * Exploding the Phone
 * (ProjectMF)[http://www.projectmf.org/intro.html]
+* (Virtual Blue Box)[https://phreaknet.org/bluebox/]
