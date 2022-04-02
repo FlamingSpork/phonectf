@@ -1,42 +1,32 @@
 # Philo's Phone Challenges
-
 Until April 15th, 2022, these can be accessed by calling +1 (585) 358-0101 from a regular phone or s@140.238.152.111 from a SIP phone.
 SIP phone support is provided to allow callers from outside the US cheaply and to allow better call quality than through cell networks.  
 
-**Testing Note:** When checking whether challenges are up or down, just listen to the audio and make sure it sounds like the correct recording.  
-These challenges are not compatible with DownDetector, unless *you* want to write a script to place a SIP call and check the audio.
 
-**CTF Operations Notes:** 
-* Only the challenge titles, difficulties, and clues are to be posted in CTFd. 
-* The flags are *not* wrapped in `RITSEC{}` due to limitations in the character sets used. Whether or not the correct flag is wrapped should probably be indicated in the clue, unless it isn't for other challenges.
-* 
-
-## "Long Distance Trunk" [Easy]
+## "Long Distance Trunk" [100]
 ### Clue
 You're not going to pay for that call, are you?  
 +1 (585) 358-0101 or s@140.238.152.111, extension #3
 
 ### How/why it works
-As I discussed in my most recent [research presentation](https://www.youtube.com/watch?v=qdciYBQngdk), a 2600 Hz tone is used to indicate that a long distance trunk line was empty.
+As I discussed in my most recent [research presentation](https://www.youtube.com/watch?v=qdciYBQngdk), a 2600 Hz tone was used to indicate that a long distance trunk line is empty.
 A blue box generates this tone and provides a keypad for dialing the MF (not to be confused with DTMF) tones (as well as ST and KP tones) needed to create a new call.
-This challenge simply detects the 2600 Hz tone and plays a flag, rather than requiring a number. 
+This challenge simply detects the 2600 Hz tone and plays a flag, rather than requiring a number, but it still requires the most memorable blue box feature. 
 
-[DTMF](https://en.wikipedia.org/wiki/Dual-tone_multi-frequency) tones are the tones that all touch-tone telephones use to indicate digits, which work by playing two tones at the same time.
+[DTMF](https://en.wikipedia.org/wiki/Dual-tone_multi-frequency) tones are the tones that all touch-tone telephones use to indicate digits, which work by making two tones at the same time.
 It replaces the disconnecting and reconnecting of the line that rotary phone dials do with in-band signalling for faster and more efficient dialing.
 
 ### Solving/Testing
-Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call, whether by holding a microphone up to the phone or using a software feature on your cellphone.  
+Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call.  
 Dial the phone call, press 3 to get to the challenge, and press the 2600 Hz button.  
 Make sure that the 2600 Hz tone plays for more than 500ms (½ second), otherwise the detection won't work.  
 You should hear a series of nine beeps that sounds like [this](https://gitlab.ritsec.cloud/flamingspork/phonectf/-/blob/master/sounds/DTMF.wav), which can be decoded using various DTMF decoders or by manually comparing with the twelve known DTMF tones.
 
-### Flag
-`*9035768*`
 
-## Military Modulation [Hard]
+## Military Modulation [500]
 ### Clue
 It's the middle of the Cold War and General Gordon needs to call the President to prevent nuclear war.  
-See if you can help him out at +1 (585) 358-0101 or s@140.238.152.111, extension # 1
+See if you can help him out at +1 (585) 358-0101 or s@140.238.152.111, extension #1
 
 ### How/why it works
 In the 60s, the US military and AT&T built the [AUTOVON](https://en.wikipedia.org/wiki/Autovon) system, a parallel telephone network to the Bell System.  
@@ -49,20 +39,16 @@ In most countries, there's a TDD relay service that deaf people can call and be 
 The TDD works by encoding letters as a series of frequency-modulated beeps at 10 characters a second.  
 
 I've configured my telephone system to listen for the `A` tones on the line connected to extension 1 and play the TDD tones that make up the flag when it gets `A`.  
-The flag and clue are a play on the title of the film Flash Gordon, which I haven't actually seen.
+The flag and clue are a play on the title of the film Flash Gordon, which I haven't actually seen, but I know has an outstanding Queen soundtrack.
 
 ### Solving/Testing
-Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call, whether by holding a microphone up to the phone or using a software feature on your cellphone.  
-Dial the phone call, press 1 (on your phone or on the DTMF Tone Generator on the website), listen for the dialtone, and click `A`.  
-If everything's working correctly, you'll hear a [series of beeps](https://gitlab.ritsec.cloud/flamingspork/phonectf/-/blob/master/sounds/TDD.wav) that repeats three times.  
+Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call.
+Dial the phone call, press 1 to enter the challenge (on your phone or on the DTMF Tone Generator on the website), listen for the dialtone, and click `A`.  
+If everything's working correctly, you'll hear this [series of beeps](https://gitlab.ritsec.cloud/flamingspork/phonectf/-/blob/master/sounds/TDD.wav) that repeats three times.  
 Run the recording of the beeps through a TDD decoder, such as [minimodem](http://www.whence.com/minimodem/) or [TTY Angel](http://www.ciscounitytools.com/Applications/General/TTYAngel/TTYAngel.html) to get the flag.  
 
-### Flag
-`FLA$HG0RDONOVERRID3`
 
-
-
-## "25¢, Please" [Medium]
+## "25¢, Please" [300]
 ### Clue
 Oh no! Your telephone line has turned into a payphone! Insert your coins and dial a number.  
 +1 (585) 358-0101 or s@140.238.152.111, extension #2
@@ -72,10 +58,7 @@ Until the early 2000s, payphones in most of the US and Canada used a series of 1
 Playing those tones back into the handset would trick the telephone switch into thinking that money had been inserted and would let the call go through.
 
 ### Solving/Testing
-Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call, whether by holding a microphone up to the phone or using a software feature on your cellphone.  
-Dial the phone call, press 2 to get to the challenge, and press the 1-slot 25¢ button and then any button on the keypad. ***TODO:*** probably shouldn't require additional button presses?
+Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call.
+Dial the phone call, press 2 to get to the challenge, and press the 1-slot 25¢ button and then any button on the keypad.
 If everything's working correctly, you'll hear [some backwards speech](https://gitlab.ritsec.cloud/flamingspork/phonectf/-/blob/master/sounds/Reversed.wav).
 Take your recording of the speech and use Audacity or some other audio editing tool to play it backwards to get the flag.
-
-### Flag
-`R3VERSED_CALL`
