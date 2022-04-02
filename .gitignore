@@ -1,0 +1,4 @@
+# don't upload the Hooty (from The Owl House) easter egg audio
+# I don't want to get a DMCA on my Git{Hub|Lab} account, but it's a line clipped from
+# this video: https://youtu.be/2o695sEsplE
+sounds/hooty.*
