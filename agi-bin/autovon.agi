@@ -106,12 +106,13 @@ while (1) {
 		if ($AGI->stream_file(SOUND_DIR . "/ACTS_SBC_Operator_Assistance", "\$") == $coin_tone) {
 			$inserted += 5;
 		} }
-
+=begin
 			while (1) {
 				if (play_wait_for_coin() == 1) {
 					exit;
 				}
 			}
+=cut
 
 			$AGI->stream_file(SOUND_DIR . "/not_deposited", "0");
 			busy_hangup();
@@ -152,8 +153,8 @@ sub busy_hangup {
 	$AGI->stream_file(SOUND_DIR . "/mod_busy", "0");
 	$AGI->stream_file(SOUND_DIR . "/mod_busy", "0");
 	$AGI->stream_file(SOUND_DIR . "/crossbar_connect_sound", "0");
-	$AGI->set_extension("6200");
-	$AGI->exec("Goto", "1");
+	#$AGI->set_extension("6200");
+	#$AGI->exec("Goto", "1");
 }
 
 sub play_wait_for_coin {

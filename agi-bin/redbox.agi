@@ -163,8 +163,8 @@ sub busy_hangup {
 	$AGI->stream_file(SOUND_DIR . "/mod_busy", "0");
 	$AGI->stream_file(SOUND_DIR . "/mod_busy", "0");
 	$AGI->stream_file(SOUND_DIR . "/crossbar_connect_sound", "0");
-	$AGI->set_extension("6200");
-	$AGI->exec("Goto", "1");
+	#$AGI->set_extension("6200");
+	#$AGI->exec("Goto", "1");
 }
 
 sub play_wait_for_coin {
