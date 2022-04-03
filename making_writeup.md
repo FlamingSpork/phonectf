@@ -39,23 +39,21 @@ I also added an anonymous endpoint that could be used as a SIP address.
 
 For both of these, I had to make sure that DTMF was in-band to actually get it through to my challenges.
 
+![](PSTN.png)
+
 ## Converting Audio and Building Dialplan
 I created a dialplan context that accepts calls from voip.ms and from anonymous SIP and then forces all calls into the `phreaking-chall` context, which had extensions for each of the challenges and easter eggs.
 
 To convert audio into the particular variety that Asterisk likes and make later transcoding easier, I ran all my audio files through this FFmpeg incantation:
 `ffmpeg -i input.file -ar 8000 -ac 1 -acodec pcm_s16le -f s16le output.sln`
 
-## Linphone
-Once I had a dialplan built and had it set up to accept SIP calls, I started testing and debugging it using Linphone.
-![](linphone.png)
+![](dialplan.png)
 
 ## Modifying `payphone.agi`
 AGI (Asterisk Gateway Interface) is Asterisk's API for expanding functionality through fully custom programs, which are often written in languages wholly unsuited for it.  
 [`payphone.agi`](https://github.com/hharte/1dcoinctrl/blob/master/asterisk/agi-bin/payphone.agi) is a script designed to emulate the central office setup required for a payphone.
 It makes a dialtone, waits for digits and coin tones, and plays recordings of connection sounds from crossbar switches and served as a good starting point for my redbox and AUTOVON challenges, especially since it seems more intuitive than conditionals in dialplans.
 In the limited time I was able to spend on this project, I couldn't be bothered to actually learn Perl or rewrite the script from scratch, which led to some issues later.
-
-**TODO: diagrams of the dialplans, and of the connection with the actual PSTN**
 
 ## Blue Box
 Instead of figuring out how to detect a single tone rather than a DTMF pair in a Perl AGI script, I found the `WaitForTone()` function in the [Asterisk docs](https://wiki.asterisk.org/wiki/display/AST/Asterisk+18+Application_WaitForTone).
