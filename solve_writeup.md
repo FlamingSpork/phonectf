@@ -1,4 +1,4 @@
-# Philo's Phone Challenges
+# Solutions to Phone Challenges
 Until April 10th, 2022, these can be accessed by calling +1 (585) 358-0101 from a regular phone or s@140.238.152.111 from a SIP phone.
 SIP phone support is provided to allow callers from outside the US cheaply and to allow better call quality than through cell networks.  
 
@@ -37,15 +37,15 @@ Oh no! Your telephone line has turned into a payphone! Insert your coins and dia
 Until the early 2000s, payphones in most of the US and Canada used a series of 1700+2200Hz tones to indicate how many coins had been inserted, with each 66 ms beep representing a nickel.  
 Playing those tones back into the handset would trick the telephone switch into thinking that money had been inserted and would let the call go through.
 
-The ["red box"](https://en.wikipedia.org/wiki/Red_box_(phreaking\)) that made these tones (or a tape recording of them) was one of the most common phreaking tools and remained useful long after blue box-able long distance systems were ceased.
+The ["red box"](https://en.wikipedia.org/wiki/Red_box_(phreaking)) that made these tones (or a tape recording of them) was one of the most common phreaking tools and remained useful long after blue box-able long distance systems were shut down.
 
 I chose reversed speech for the flag because it felt period-appropriate to when phreaking was happening, and I like the idea of people tampering with phone systems and running into the extraordinary that reversed speech like that kinda represents.
-If you like that idea too, I've written [a few stories](https://philo.gay/stories) that are tangentially related.
+If you like that idea (of picking up a phone, trying to phreak, and running into a demon or something) too, I've written [a few stories](https://philo.gay/stories) that are tangentially related.
 
 ### Solving/Testing
 Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call.
 Dial the phone call, press 2 to get to the challenge, and press the 1-slot 25¢ button and then any button on the keypad.
-If everything's working correctly, you'll hear [some backwards speech](sounds/Reversed.wav).
+If everything's working correctly, you'll hear [this backwards speech](sounds/Reversed.wav).
 Take your recording of the speech and use Audacity or some other audio editing tool to play it backwards to get the flag.
 
 ### Flag
@@ -65,12 +65,13 @@ The levels were known as Flash Override, Flash, Immediate, Priority, and Routine
 
 A [Telecommunications device for the deaf (TDD)](https://en.wikipedia.org/wiki/Telecommunications_device_for_the_deaf) is a system that allows text to be transmitted over a telephone line.  
 In most countries, there's a TDD relay service that deaf people can call and be connected with a relay operator, who will speak on their behalf and relay the conversation over the TDD.  
-The TDD works by encoding letters as a series of frequency-modulated beeps at 10 characters a second.  
+The TDD works by encoding letters as a series of frequency-modulated Baudot beeps at 10 characters a second.
+The system was designed for civilian use, which led some people looking at the clue down the wrong path for some sort of military RTTY.  
 
 I've configured my telephone system to listen for the `A` tones on the line connected to extension 1 and play the TDD tones that make up the flag when it gets `A`.  
 The flag and clue are a play on the title of the film Flash Gordon, which I haven't actually seen, but I know has an outstanding Queen soundtrack.
 
-I came up with this challenge after looking at my line~~man~~woman's set, which has buttons for the AUTOVON tones and after wondering what it would take to use a payphone TTY for its intended purpose.
+I came up with this challenge after looking at my line~~man~~woman's set, which has buttons for the AUTOVON tones and after wondering what it would take to use a [payphone TTY](https://twitter.com/Flaming_Spork/status/1504902391094784006) for its intended purpose.
 ![two telephone linemans sets on a green background. one is black and has a rotary dial, the other is blue and has an oddly wide telephone keypad and several switches](lineman.jpg)
 
 ### Solving/Testing

@@ -160,3 +160,5 @@ If you participated, thank you, and if you didn't, thank you for reading anyway.
 * [ProjectMF](http://www.projectmf.org/intro.html)
 * [Virtual Blue Box](https://phreaknet.org/bluebox/) proved useful in my testing, as did [ToneDef (Android app)](https://github.com/Fortyseven/ToneDef)
 * [RITSEC](https://ritsec.club) is a computer security club at the [Rochester Institute of Technology](https://www.rit.edu), where I'm a student
+
+If you have any questions or there's a mistake in my explanation, please reach out.
