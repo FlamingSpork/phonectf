@@ -1,5 +1,5 @@
- this is left sparse and mostly serves as a reminder for me of how I did this
- setting this up will require significant Linux knowledge and probably some SIP/Asterisk kno
+ this is left sparse and mostly serves as a reminder for me of how I did this and proof that I can (sometimes) figure things out
+ setting this up will require significant Linux knowledge and probably some SIP/Asterisk know-how
  
  ```bash
  wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz
