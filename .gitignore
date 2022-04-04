@@ -3,4 +3,9 @@
 # this video: https://youtu.be/2o695sEsplE
 sounds/hooty.*
 
+# to prevent me from committing pcaps that I was using for debugging
 *.pcap
+
+# to avoid uploading the massive csv file of call logs
+# since I deleted it anyway, it didn't matter, but I'd rather be safe than sorry
+*.csv

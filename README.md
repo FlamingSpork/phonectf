@@ -46,6 +46,7 @@ For some reason, digits beyond the first row are read incorrectly, but consisten
 | 852 Hz    | 7           | 8           | 9           | C           | *G*           |
 | 941 Hz    | *           | 0           | #           | D           | *H*           |
 | *1700 Hz* | *I*         | *J*         | *K*         | *L*         | *$*           |
+
 *italicized digits and tones are not present in standard DTMF*
 
 ## Building and Installing Asterisk
@@ -117,24 +118,38 @@ I left a few audio files in the system to make sure my dialplan worked correctly
 # Random Issues
 * DTMF tolerances were so broken that I had to use different digits
 * Blocking SIP scanners
-no, my server does *not* have an outbound route to reach phone numbers in England, please stop trying
+(no, my server does *not* have an outbound route to reach phone numbers in England, please stop trying)
 * logs overfilling the disk
 * why is this failing through to rickroll?
-it turns out that my dialplan was more convoluted than I thought
+(it turns out that my dialplan was more convoluted than I thought)
 * my absurd laziness
 * weird NAT issues
+* lack of testing of SIP calling before the competition started
 
 # Successes/Statistics
-We had __ total successful solves, and (`core show channels`) phone calls during the CTF, although this number may have been heavily skewed by SIP scanners.
+There were 38 total successful solves, and 412 total phone calls during the CTF, although this number may have been skewed by SIP scanners.
 
 Per-challenge breakdown:
-* "Long Distance Trunk" [100→300 points]: X solves
-* "25¢, Please" [300 points]: X solves
-* Military Modulation [500 points]: X solves
+* "Long Distance Trunk" [100→300 points]: 13 solves
+* "25¢, Please" [300 points]: 18 solves
+* Military Modulation [500 points]: 7 solves
 
 Call type breakdown:
-* X anonymous SIP
-* X phone calls through voip.ms
+* 263 anonymous SIP
+* 151 phone calls through voip.ms
+
+The system received telephone calls from all over the world, including:
+* United States (+1)
+* Canada (+1)
+* Taiwan (+886)
+* South Korea (+82)
+* Australia (+61)
+* Italy (+39)
+* Spain (+34)
+* Vietnam (+84)
+
+After compiling these statistics, I have deleted all of the records they were compiled from.
+I was under the impression that my system was not collecting caller ID information, as voip.ms lists a charge per lookup, which I explicitly disabled.
 
 If you participated, thank you, and if you didn't, thank you for reading anyway.
 

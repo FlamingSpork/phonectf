@@ -1,10 +1,10 @@
 # Philo's Phone Challenges
-Until April 15th, 2022, these can be accessed by calling +1 (585) 358-0101 from a regular phone or s@140.238.152.111 from a SIP phone.
+Until April 10th, 2022, these can be accessed by calling +1 (585) 358-0101 from a regular phone or s@140.238.152.111 from a SIP phone.
 SIP phone support is provided to allow callers from outside the US cheaply and to allow better call quality than through cell networks.  
 
 **TODO: discuss inspiration**
 
-## "Long Distance Trunk" [100 points]
+## "Long Distance Trunk" [100→300 points]
 ### Clue
 You're not going to pay for that call, are you?  
 +1 (585) 358-0101 or s@140.238.152.111, extension #3
@@ -17,11 +17,14 @@ This challenge simply detects the 2600 Hz tone and plays a flag, rather than req
 [DTMF](https://en.wikipedia.org/wiki/Dual-tone_multi-frequency) tones are the tones that all touch-tone telephones use to indicate digits, which work by making two tones at the same time.
 It replaces the disconnecting and reconnecting of the line that rotary phone dials do with in-band signalling for faster and more efficient dialing.
 
+When I first started thinking up these challenges, I knew that there *needed* to be a blue box challenge, since that's the first phreaking thing that anyone learns about.
+Surprisingly, this one turned out to be harder (or at least have fewer solves) than the red box challenge, although I think that's from a combination of [overfamiliarity](https://xkcd.com/2501/) and a poorly-worded description.
+
 ### Solving/Testing
 Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call.  
 Dial the phone call, press 3 to get to the challenge, and press the 2600 Hz button.  
 Make sure that the 2600 Hz tone plays for more than 500ms (½ second), otherwise the detection won't work.  
-You should hear a series of nine beeps that sounds like [this](https://gitlab.ritsec.cloud/flamingspork/phonectf/-/blob/master/sounds/DTMF.wav), which can be decoded using various DTMF decoders or by manually comparing with the twelve known DTMF tones.
+You should hear a series of nine beeps that sounds like [this](https://gitlab.ritsec.cloud/flamingspork/phonectf/-/blob/master/sounds/DTMF.wav), which can be decoded using various DTMF decoders or by manually comparing with the known DTMF tones.
 
 ### Flag
 `*9035768*`
@@ -63,6 +66,9 @@ The TDD works by encoding letters as a series of frequency-modulated beeps at 10
 
 I've configured my telephone system to listen for the `A` tones on the line connected to extension 1 and play the TDD tones that make up the flag when it gets `A`.  
 The flag and clue are a play on the title of the film Flash Gordon, which I haven't actually seen, but I know has an outstanding Queen soundtrack.
+
+I came up with this challenge after looking at my line~~man~~woman's set, which has buttons for the AUTOVON tones and after wondering what it would take to use a payphone TTY for its intended purpose.
+![two telephone linemans sets on a green background. one is black and has a rotary dial, the other is blue and has an oddly wide telephone keypad and several switches](lineman.jpg)
 
 ### Solving/Testing
 Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call.
