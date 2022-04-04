@@ -60,7 +60,7 @@ For accepting calls from the Public Switched Telephone Network, I used [voip.ms]
 I chose voip.ms because they have [good documentation](https://wiki.voip.ms/article/Asterisk_PJSIP), and, more importantly, they're cheap.
 To be clear, I was not sponsored by them in any way for this project.
 
-After buying the number, I made sure that they were sending DTMF tones in-band, rather than as a SIP message, both in their web interface and in (my PJSIP config)[config/pjsip.conf].
+After buying the number, I made sure that they were sending DTMF tones in-band, rather than as a SIP message, both in their web interface and in [my PJSIP config](config/pjsip.conf).
 
 ## PJSIP Config
 In order to accept inbound SIP calls with the particular network setup I used, I had to [gaslight and girlboss my SIP packets through NAT](https://twitter.com/kimlikesflowers/status/1502478844204355587).
@@ -135,7 +135,7 @@ Per-challenge breakdown:
 * Military Modulation [500 points]: 7 solves
 
 Call type breakdown:
-* 263 anonymous SIP
+* 263 anonymous SIP calls
 * 151 phone calls through voip.ms
 
 The system received telephone calls from all over the world, including:
@@ -149,7 +149,7 @@ The system received telephone calls from all over the world, including:
 * Vietnam (+84)
 
 After compiling these statistics, I have deleted all of the records they were compiled from.
-I was under the impression that my system was not collecting caller ID information, as voip.ms lists a charge per lookup, which I explicitly disabled.
+I was under the impression that my system was not collecting caller ID information, as voip.ms lists a charge per lookup, which I explicitly declined.
 
 If you participated, thank you, and if you didn't, thank you for reading anyway.
 

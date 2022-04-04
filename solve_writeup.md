@@ -2,8 +2,6 @@
 Until April 10th, 2022, these can be accessed by calling +1 (585) 358-0101 from a regular phone or s@140.238.152.111 from a SIP phone.
 SIP phone support is provided to allow callers from outside the US cheaply and to allow better call quality than through cell networks.  
 
-**TODO: discuss inspiration**
-
 ## "Long Distance Trunk" [100→300 points]
 ### Clue
 You're not going to pay for that call, are you?  
@@ -18,13 +16,13 @@ This challenge simply detects the 2600 Hz tone and plays a flag, rather than req
 It replaces the disconnecting and reconnecting of the line that rotary phone dials do with in-band signalling for faster and more efficient dialing.
 
 When I first started thinking up these challenges, I knew that there *needed* to be a blue box challenge, since that's the first phreaking thing that anyone learns about.
-Surprisingly, this one turned out to be harder (or at least have fewer solves) than the red box challenge, although I think that's from a combination of [overfamiliarity](https://xkcd.com/2501/) and a poorly-worded description.
+Surprisingly, this one turned out to be harder (or at least have fewer solves) than the red box challenge, although I think that's from a combination of [overfamiliarity with phone systems](https://xkcd.com/2501/) and a poorly-worded description.
 
 ### Solving/Testing
 Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call.  
 Dial the phone call, press 3 to get to the challenge, and press the 2600 Hz button.  
 Make sure that the 2600 Hz tone plays for more than 500ms (½ second), otherwise the detection won't work.  
-You should hear a series of nine beeps that sounds like [this](https://gitlab.ritsec.cloud/flamingspork/phonectf/-/blob/master/sounds/DTMF.wav), which can be decoded using various DTMF decoders or by manually comparing with the known DTMF tones.
+You should hear a series of nine beeps that sounds like [this](sounds/DTMF.wav), which can be decoded using various DTMF decoders or by manually comparing with the known DTMF tones.
 
 ### Flag
 `*9035768*`
@@ -39,10 +37,15 @@ Oh no! Your telephone line has turned into a payphone! Insert your coins and dia
 Until the early 2000s, payphones in most of the US and Canada used a series of 1700+2200Hz tones to indicate how many coins had been inserted, with each 66 ms beep representing a nickel.  
 Playing those tones back into the handset would trick the telephone switch into thinking that money had been inserted and would let the call go through.
 
+The ["red box"](https://en.wikipedia.org/wiki/Red_box_(phreaking\)) that made these tones (or a tape recording of them) was one of the most common phreaking tools and remained useful long after blue box-able long distance systems were ceased.
+
+I chose reversed speech for the flag because it felt period-appropriate to when phreaking was happening, and I like the idea of people tampering with phone systems and running into the extraordinary that reversed speech like that kinda represents.
+If you like that idea too, I've written [a few stories](https://philo.gay/stories) that are tangentially related.
+
 ### Solving/Testing
 Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call.
 Dial the phone call, press 2 to get to the challenge, and press the 1-slot 25¢ button and then any button on the keypad.
-If everything's working correctly, you'll hear [some backwards speech](https://gitlab.ritsec.cloud/flamingspork/phonectf/-/blob/master/sounds/Reversed.wav).
+If everything's working correctly, you'll hear [some backwards speech](sounds/Reversed.wav).
 Take your recording of the speech and use Audacity or some other audio editing tool to play it backwards to get the flag.
 
 ### Flag
@@ -73,7 +76,7 @@ I came up with this challenge after looking at my line~~man~~woman's set, which 
 ### Solving/Testing
 Go to https://phreaknet.org/bluebox/ and hold your phone's microphone near the computer's speakers while also recording the phone call.
 Dial the phone call, press 1 to enter the challenge (on your phone or on the DTMF Tone Generator on the website), listen for the dialtone, and click `A`.  
-If everything's working correctly, you'll hear this [series of beeps](https://gitlab.ritsec.cloud/flamingspork/phonectf/-/blob/master/sounds/TDD.wav) that repeats three times.  
+If everything's working correctly, you'll hear this [series of beeps](sounds/TDD.wav) that repeats three times.  
 Run the recording of the beeps through a TDD decoder, such as [minimodem](http://www.whence.com/minimodem/) or [TTY Angel](http://www.ciscounitytools.com/Applications/General/TTYAngel/TTYAngel.html) to get the flag.  
 
 ### Flag
