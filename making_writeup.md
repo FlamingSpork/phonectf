@@ -1,8 +1,36 @@
-# Flaming_Spork's Phone Challenges: The Making Of/Internal Workings
+# FlamingSpork's Phone Challenges
 
-**WARNING:** The following is very much a spoiler for the challenges
+For this year's [RITSEC](https://ritsec.club) CTF, I made these three phone phreaking challenges all because of an offhand joke about my fascination with telephone systems.
+They're very unusual and were likely many competitors' first encounter with attempting phreaking.
+According to people I've discussed it with, they were each reasonably challenging and required unearthing quite a bit of old knowledge.
 
-***TODO: rename this to `README.md` and merge in `solve_writeup.md`***
+# TL;DR
+In short, I set up a server (using software intended for a business phone system) that receives calls and emulates certain aspects of a 1960s-era telephone exchange.
+If you use the same techniques that were used to trick and tamper with phones back then, you can receive audio messages that have to be decoded to find the "flags" to win points.
+
+# Attempting the Challenges
+I have decided to leave the number and SIP address operational for a couple days after the CTF ends on April 3rd, but will shut it down if my server gets spammed.
+Please do not message me asking for help with getting SIP to connect; I spent all weekend fielding DMs and am tired of even *thinking* about SIP.
+
+## "Long Distance Trunk" [100→300 points, X solves]
+### Clue
+You're not going to pay for that call, are you?  
++1 (585) 358-0101 or s@140.238.152.111, extension #3
+
+## "25¢, Please" [300 points, X solves]
+### Clue
+Oh no! Your telephone line has turned into a payphone! Insert your coins and dial a number.  
++1 (585) 358-0101 or s@140.238.152.111, extension #2
+
+## Military Modulation [500 points, X solves]
+### Clue
+It's the middle of the Cold War and General Gordon needs to call the President to prevent nuclear war.  
+See if you can help him out at +1 (585) 358-0101 or s@140.238.152.111, extension #1
+
+# Solutions
+Solutions and explanations of the challenges are in [`solve_writeup.md`](solve_writeup.md)
+
+# How I Built It
 
 ## Patching Asterisk for Modified DTMF
 To avoid writing my own two-tone detector code for payphone/red box tones, I used [`hharte`'s patch](https://github.com/hharte/1dcoinctrl/blob/master/asterisk/main/0001-Modify-DTMF-matrix-to-decode-1700-2200Hz-coin-tones.patch) to Asterisk's DTMF detector, which added the extra digit `$`.
@@ -61,17 +89,15 @@ This isn't an accurate emulation at all and gives a lot less feedback than the o
 I used Audacity to make an audio file with DTMF tones to the flag, which I aimed to be the easiest one of mine to find.
 
 ## AUTOVON
-The script that runs it can be found in: [agi-bin/autovon.agi]
+The script that runs it can be found in: [`autovon.agi`](agi-bin/autovon.agi)
 I removed a significant portion of `payphone.agi` and made it detect the AUTOVON Flash Override (`A`) tones as a coin, since this seemed easier than trying to get DTMF detection in a dialplan.
 If 5¢ (one press of the `A` button) was received, it played the flag, but it gave a busy signal if any other buttons were heard or if it timed out waiting for a digit.
 
-I made the flag using `echo "FLA\$HG0RDONOVERRID3" | minimodem --tx tdd -f TDD.flac`, which I made play three times specifically to get it to work with (TTY/TDD drawers)[https://twitter.com/Flaming_Spork/status/1504902391094784006] and to hopefully minimize decoding problems.
-
-***TODO: download final patched AGI scripts***
+I made the flag using `echo "FLA\$HG0RDONOVERRID3" | minimodem --tx tdd -f TDD.flac`, which I made play three times specifically to get it to work with [TTY/TDD drawers](https://twitter.com/Flaming_Spork/status/1504902391094784006) and to hopefully minimize decoding problems.
 
 ## Redbox
-AGI script: [agi-bin/redbox.agi]  
-very little modification to make it work
+AGI script: [`redbox.agi`](agi-bin/redbox.agi)  
+Very little modification was required to make it work
 the main thing was to make it not faithfully emulate and expect digits to dial
 in the end, didn't manage to truly defeat that requirement, so just made the clue include it
 
@@ -83,17 +109,20 @@ I left a few audio files in the system to make sure my dialplan worked correctly
 * 6: TDD audio that I used for [this tweet](https://twitter.com/Flaming_Spork/status/1504902391094784006) (in `sounds/bgdc.{flac,sln}`)
 * 7: [this line from The Owl House](https://youtu.be/2o695sEsplE?t=14) with a bit of dialtone after it
 
-## Issues
+# Issues
 * DTMF tolerances are so borked that I had to use different digits
 * blocking SIP scanners
 * logs overfilling the disk
 * why is this failing through to rickroll?
 * my absurd laziness
+* weird NAT issues
 
-## Successes/Statistics
-We had __ successful solves, and (`core show channels`) phone calls during the CTF, although this number may have been skewed by SIP scanners
+# Successes/Statistics
+We had __ successful solves, and (`core show channels`) phone calls during the CTF, although this number may have been heavily skewed by SIP scanners.
 
-## Want to learn more?
+If you participated, thank you, and if you didn't, thank you for reading anyway
+
+# Want to learn more?
 * _Exploding the Phone_ by Phil Lapsley is an excellent read and my introduction to phone phreaking
 * [The Connections Museum](https://www.youtube.com/user/museumofcomm) in Seattle has a very good YouTube channel where they talk about repairing their telephone switches
 * [The Telephone Museum](https://thetelephonemuseum.org/) in Ellsworth, Maine (near Bangor) is also a fun visit if you're around
