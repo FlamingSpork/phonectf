@@ -1,11 +1,12 @@
 # Solutions to Phone Challenges
-Until April 10th, 2022, these can be accessed by calling +1 (585) 358-0101 from a regular phone or s@140.238.152.111 from a SIP phone.
+~~Until April 10th, 2022, these can be accessed by calling +1 (585) 358-0101 from a regular phone or s@140.238.152.111 from a SIP phone.~~  
+The challenge has been shut down. Thank you if you participated.
 SIP phone support is provided to allow callers from outside the US cheaply and to allow better call quality than through cell networks.  
 
 ## "Long Distance Trunk" [100→300 points]
 ### Clue
 You're not going to pay for that call, are you?  
-+1 (585) 358-0101 or s@140.238.152.111, extension #3
+~~+1 (585) 358-0101 or s@140.238.152.111~~, extension #3
 
 ### How/why it works
 As I discussed in my most recent [RITSEC research presentation](https://www.youtube.com/watch?v=qdciYBQngdk), a 2600 Hz tone was used to indicate that a long distance trunk line is empty.
@@ -31,7 +32,7 @@ You should hear a series of nine beeps that sounds like [this](sounds/DTMF.wav),
 ## "25¢, Please" [300 points]
 ### Clue
 Oh no! Your telephone line has turned into a payphone! Insert your coins and dial a number.  
-+1 (585) 358-0101 or s@140.238.152.111, extension #2
+~~+1 (585) 358-0101 or s@140.238.152.111~~, extension #2
 
 ### How/why it works
 Until the early 2000s, payphones in most of the US and Canada used a series of 1700+2200Hz tones to indicate how many coins had been inserted, with each 66 ms beep representing a nickel.  
@@ -55,7 +56,7 @@ Take your recording of the speech and use Audacity or some other audio editing t
 ## Military Modulation [500 points]
 ### Clue
 It's the middle of the Cold War and General Gordon needs to call the President to prevent nuclear war.  
-See if you can help him out at +1 (585) 358-0101 or s@140.238.152.111, extension #1
+See if you can help him out at ~~+1 (585) 358-0101 or s@140.238.152.111~~, extension #1
 
 ### How/why it works
 In the 60s, the US military and AT&T built the [AUTOVON](https://en.wikipedia.org/wiki/Autovon) system, a parallel telephone network to the Bell System.  
